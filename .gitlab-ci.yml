@@ -1,0 +1,30 @@
+image: centos
+
+stages:
+  - build
+  - test
+  - deploy
+
+job_build:
+  stage: build
+  script:
+    - docker build -t 192.168.89.128:90/tct/centos-base-env .
+    - docker push 192.168.89.128:90/tct/centos-base-env
+  only:
+    - develop
+  tags:
+    - shared-runner
+
+job_test:
+  stage: test
+  script:
+    - echo "test"
+  tags:
+    - shared-runner
+
+job_deploy:
+  stage: deploy
+  script:
+    - echo "deploy over..."
+  tags:
+    - shared-runner
