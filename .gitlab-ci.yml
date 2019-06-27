@@ -1,4 +1,6 @@
-image: centos
+image: docker:git
+services:
+- docker:dind
 
 stages:
   - build
