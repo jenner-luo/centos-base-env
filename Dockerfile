@@ -1,4 +1,4 @@
-FROM centos7
+FROM centos
 LABEL maintainer="Jenner.luo"
 #install python3.7.3
 RUN yum install -y zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel \
