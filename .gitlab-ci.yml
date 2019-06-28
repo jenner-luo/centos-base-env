@@ -1,37 +1,17 @@
-image: docker:git
-services:
-- docker:dind
+image: 192.168.89.128:90/library/docker:git
 
-variables:
-  GIT_CLONE_PATH: $CI_BUILDS_DIR/project-name
-
+before_script:
+  - docker login 192.168.89.128:90 -p gitLab12345 -u gitlab
+  
 stages:
   - build
-  - test
-  - deploy
 
 job_build:
   stage: build
   script:
-    - pwd
-    - ls /
     - docker build -t 192.168.89.128:90/tct/centos-base-env .
     - docker push 192.168.89.128:90/tct/centos-base-env:latest
   only:
     - master
-  tags:
-    - shared-runner
-
-job_test:
-  stage: test
-  script:
-    - echo "test"
-  tags:
-    - shared-runner
-
-job_deploy:
-  stage: deploy
-  script:
-    - echo "deploy over..."
   tags:
     - shared-runner
