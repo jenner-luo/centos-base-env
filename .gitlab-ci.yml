@@ -2,6 +2,9 @@ image: docker:git
 services:
 - docker:dind
 
+variables:
+  GIT_CLONE_PATH: $CI_BUILDS_DIR/project-name
+
 stages:
   - build
   - test
@@ -10,6 +13,8 @@ stages:
 job_build:
   stage: build
   script:
+    - pwd
+    - ls /
     - docker build -t 192.168.89.128:90/tct/centos-base-env .
     - docker push 192.168.89.128:90/tct/centos-base-env
   only:
