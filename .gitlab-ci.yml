@@ -16,7 +16,7 @@ job_build:
     - pwd
     - ls /
     - docker build -t 192.168.89.128:90/tct/centos-base-env .
-    - docker push 192.168.89.128:90/tct/centos-base-env
+    - docker push 192.168.89.128:90/tct/centos-base-env:latest
   only:
     - master
   tags:
